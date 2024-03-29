@@ -4,7 +4,7 @@ Tvým úkolem je vytvořit program, který bude získávat data z obchodního re
 
 ## Část 1
 
-V této části vyhledej informace o konkrétním subjektu na základě jeho identifikačního čísla (IČO). Toto číslo je jedinečným identifikátorem subjektu, pro každé číslo tedy rejstřík vrátí informace pouze o jednom subjektui. Nejprve se pomocí funkce `input()` zeptej uživatele nebo uživatelky, o kterém subjektu chce získat informace. S využitím modulu `requests` odešli GET požadavek na adresu https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/ICO, kde `ICO` nahraď číslem, které zadal(ka) uživatel(ka). S adresou pracuj jako s obyčejným řetězcem, tj. můžeš využívat formátované řetězce, metodu `.replace()`, operátor `+` atd. Text, který API vrátí, převeď na JSON a zjisti z něj obchodní jméno subjektu a adresu jeho sídla (můžeš využít podle `textovaAdresa`). Získané informace vypiš na obrazovku.
+V této části vyhledej informace o konkrétním subjektu na základě jeho identifikačního čísla (IČO). Toto číslo je jedinečným identifikátorem subjektu, pro každé číslo tedy rejstřík vrátí informace pouze o jednom subjektui. Nejprve se pomocí funkce `input()` zeptej uživatele nebo uživatelky, o kterém subjektu chce získat informace. S využitím modulu `requests` odešli GET požadavek na adresu <https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/ICO>, kde `ICO` nahraď číslem, které zadal(ka) uživatel(ka). S adresou pracuj jako s obyčejným řetězcem, tj. můžeš využívat formátované řetězce, metodu `.replace()`, operátor `+` atd. Text, který API vrátí, převeď na JSON a zjisti z něj obchodní jméno subjektu a adresu jeho sídla (můžeš využít podle `textovaAdresa`). Získané informace vypiš na obrazovku.
 
 Například pro IČO 22834958 by tvůj program měl vypsat následující text.
 
@@ -17,7 +17,7 @@ Václavské náměstí 837/11, Nové Město, 11000 Praha 1
 
 Často se stane, že neznáme IČO subjektu, ale známe například jeho název nebo alespoň část názvu. Napiš program, který se zeptá uživatele(ky) na název subjektu, který chce vyhledat. Následně vypiš všechny nalezené subjekty, které ti API vrátí.
 
-V případě vyhledávání musíme odeslat požadavek typu POST na adresu https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ciselniky-nazevniky/vyhledat. Request typu POST pošleme tak, že namísto funkce `requests.get()` použijeme funkci `requests.post()`. K requestu musíme přidat hlavičku (parametr `headers`), který určí formát výstupních dat. Použij slovník níže.
+V případě vyhledávání musíme odeslat požadavek typu POST na adresu <https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ciselniky-nazevniky/vyhledat>. Request typu POST pošleme tak, že namísto funkce `requests.get()` použijeme funkci `requests.post()`. K requestu musíme přidat hlavičku (parametr `headers`), který určí formát výstupních dat. Použij slovník níže.
 
 ```py
 headers = {
@@ -66,7 +66,7 @@ Ve tvém programu musíš nahradit řetězec `moneta` proměnnou, která obsahuj
 
 ## Bonus
 
-Ke každému subjektu je v databázi uložena jeho právní forma. Ta se nachází pod klíčem `pravniForma`. Není tam přímo název subjektu, ale číselný kód, jehož význam je uložený v tzv. číselníku. Pomocí požadavku na adresu https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ciselniky-nazevniky/vyhledat si můžeme stáhnout celý číselník a poté tam příslušný kód vyhledat. Přidej do programu požadavek na tuto adresu. Půjde o požadavek typu POST, parametr `headers` zůstane stejný a jako parametr `data` zadej:
+Ke každému subjektu je v databázi uložena jeho právní forma. Ta se nachází pod klíčem `pravniForma`. Není tam přímo název subjektu, ale číselný kód, jehož význam je uložený v tzv. číselníku. Pomocí požadavku na adresu <https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ciselniky-nazevniky/vyhledat> si můžeme stáhnout celý číselník a poté tam příslušný kód vyhledat. Přidej do programu požadavek na tuto adresu. Půjde o požadavek typu POST, parametr `headers` zůstane stejný a jako parametr `data` zadej:
 
 ```
 data = '{"kodCiselniku": "PravniForma", "zdrojCiselniku": "res"}'
