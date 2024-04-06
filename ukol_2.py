@@ -1,5 +1,6 @@
 import requests
 import json
+import sys
 
 ico= input("Zadejte IČ subkjektu, který Vás zajímá:\n")
 headers = {
@@ -13,14 +14,18 @@ if response.text and response.status_code == 200:
     
 
 obchodniJmeno = data.get('obchodniJmeno')
-textovaAdresa = data.get('sidlo', {}).get('textovaAdresa')
+# Tohle je super, ale myslím, že by bylo fajn přidat nepovinný parametr i pro druhý get, aby to v případě
+# nenalezení adresy nevrátílo prázdný řetězec
+textovaAdresa = data.get('sidlo', {}).get('textovaAdresa', "")
 
 print( f"{obchodniJmeno} \n{textovaAdresa}")
 
 def find_legal_form(code, items):
     for item in items:
         if item['kod'] == code:
-            return item['nazev']
+# API data vrací jako seznam. 
+# Je možné si vytáhnout položku na pozici 0 a k ní název, takže v tom výpisu neuvidíme další informace navíc (jako jazykový kód atd.)
+            return item['nazev'][0]["nazev"]
     return None
 
 # Získání číselníku právních forem
