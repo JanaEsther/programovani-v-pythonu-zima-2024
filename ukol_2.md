@@ -8,10 +8,8 @@ V této části vyhledej informace o konkrétním subjektu na základě jeho ide
 
 Například pro IČO 22834958 by tvůj program měl vypsat následující text.
 
-```
 Czechitas z.ú.
 Václavské náměstí 837/11, Nové Město, 11000 Praha 1
-```
 
 ## Část 2
 
@@ -45,7 +43,6 @@ res = requests.post("https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomick
 
 Tentokrát API vrátí počet nalezených subjektů (`pocetCelkem`) a seznam nalezených subjektů `ekonomickeSubjekty`. Tvůj program by měl vypsat obchodní jména všech nalezených subjektů a jejich identifikační čísla, výstupy odděluj čárkou. Příklad výstupu pro `"moneta"` je níže.
 
-```
 Nalezeno subjektů: 13
 MONETA PARTNERS s.r.o., 01590952
 Moneta Sinkovská, 05170443
@@ -60,7 +57,6 @@ JK MONETA, s.r.o., 29242746
 MONETA Stavební Spořitelna, a.s., 47115289
 MONETA Auto, s.r.o., 60112743
 MONETA Leasing, s.r.o., 60751606
-```
 
 Ve tvém programu musíš nahradit řetězec `moneta` proměnnou, která obsahuje řetězec zadaný uživatelem.
 
@@ -68,9 +64,7 @@ Ve tvém programu musíš nahradit řetězec `moneta` proměnnou, která obsahuj
 
 Ke každému subjektu je v databázi uložena jeho právní forma. Ta se nachází pod klíčem `pravniForma`. Není tam přímo název subjektu, ale číselný kód, jehož význam je uložený v tzv. číselníku. Pomocí požadavku na adresu <https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ciselniky-nazevniky/vyhledat> si můžeme stáhnout celý číselník a poté tam příslušný kód vyhledat. Přidej do programu požadavek na tuto adresu. Půjde o požadavek typu POST, parametr `headers` zůstane stejný a jako parametr `data` zadej:
 
-```
 data = '{"kodCiselniku": "PravniForma", "zdrojCiselniku": "res"}'
-```
 
 Číselník je v seznamu pod klíčem `ciselniky`. Dále použij počáteční hodnotu ze seznamu (dotaz vrátí pouze jeden číselník, v seznamu je tedy pouze jedna položka). Touto hodnotou je opět slovník, ve kterém je pod klíčem `polozkyCiselniku` seznam všech kódů a jejich hodnot.
 
@@ -78,7 +72,6 @@ Poté napiš funkci `find_legal_form`, která bude přijímat dva parametry - hl
 
 Nyní uprav část programu, která vypisuje všechny aplikace podle názvu, aby spolu s obchodním jménem a identifikačním číslem vypsala i právní normu. Napříkad pro `"moneta"` by výstup mohl vypadat takto:
 
-```
 Nalezeno subjektů: 13
 MONETA PARTNERS s.r.o., 01590952, Společnost s ručením omezeným
 Moneta Sinkovská, 05170443, Fyzická osoba podnikající dle živnostenského zákona
@@ -93,7 +86,6 @@ JK MONETA, s.r.o., 29242746, Společnost s ručením omezeným
 MONETA Stavební Spořitelna, a.s., 47115289, Akciová společnost
 MONETA Auto, s.r.o., 60112743, Společnost s ručením omezeným
 MONETA Leasing, s.r.o., 60751606, Společnost s ručením omezeným
-```
 
 ## Diakritika
 
